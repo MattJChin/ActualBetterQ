@@ -4,81 +4,96 @@ Created on Tue Jul 12 19:14:26 2022
 
 @author: Preston Waters
 """
+from unicodedata import name
 from githubParser import parseSemesterCourses
  
 #prompt the user to select courses they are required to take
-def selectReqs(departmentDict):
+class User(object):
+    def _init__(self, userfile, userstatus):
+        self.userfile  = userfile
+        self.userstatus =userstatus
+        self.f = open(userfile, "w")
+        
+    def userinput(self, prompt):
+        self.f.write(str(prompt))
+        return input("")
+            
+            
+class BetterQ():
     
-    requiredKeys = []
-    
-    print("Please select required courses")
-    print("Input 4 character code for department (case sensitive)")
-    
-    for key, value in departmentDict.items() :
-        print(key)
-    
-    dept = input("Input subject code or type NEXT to continue: ")
-    
-    while(dept != "NEXT"):
-        if dept in departmentDict:
-            for key, value in departmentDict[dept].items() :
-                print(key)
-            select = input("Please type the name of a course, or type BACK to go back: ")
-            while(select != "BACK"):
-                if select in departmentDict[dept]:
-                    print(select + " selected.")
-                    requiredKeys.append((dept, select))
-                else:
-                    print("Invalid input.")
-                select = input("Please type the name of a course, or type BACK to go back: ")
-            for key, value in departmentDict.items() :
-                print(key)
-        elif(dept == "NEXT"):
-            print("Moving to prefrence selection")
-        else:
-            print("Invalid input.")
+    requredKeys= []
+    def __init__(self, USERinstance, departmentDict):
+        self.USERinstance = USERinstance
+        self.departmentDict = departmentDict
+        
+    def selectReqs(self):
+        print("Please select required courses")
+        print("Input 4 character code for department (case sensitive)")
+        for key, value in self.departmentDict.items() :
+            dept = self.USERinstance.userinput("Input subject code or type NEXT to continue: ")
+        while(dept != "NEXT"):
+            if dept in self.departmentDict:
+                for key, value in self.departmentDict[dept].items() :
+                    print(key)
+                select = self.USERinstance.userinput("Please type the name of a course, or type BACK to go back: ")
+                while(select != "BACK"):
+                    if select in self.departmentDict[dept]:
+                        print(select + " selected.")
+                        self.requiredKeys.append((dept, select))
+                    else:
+                        print("Invalid input.")
+                    select = self.USERinstance.userinput("Please type the name of a course, or type BACK to go back: ")
+                for key, value in self.departmentDict.items() :
+                    print(key)
+            elif(dept == "NEXT"):
+                print("Moving to prefrence selection")
+            else:
+                print("Invalid input.")
             
         dept = input("Input subject code or type NEXT to continue: ")
-    
+        return self.requiredKeys
     #returning a list of touples eg ("CSCI", "Computer Science I")
     #this is the key pair for the list of comp sci 1 courseClasses
-    return requiredKeys
-    
-#reorganize course data into a list for prefrence & calander management
-#list will ommit required courses
-def listify(departmentDict, requiredKeys):
-    
-    otherCourses = []
-    #for key in dict
-    for department in departmentDict:
-        for course in departmentDict[department]:
-            if (department, course) not in requiredKeys:
-                for x in departmentDict[department][course]:
-                    otherCourses.append(x)
-    
-    return otherCourses
  
+    #reorganize course data into a list for prefrence & calander management
+    #list will ommit required courses
+
+    def listify(self):
+        
+        otherCourses = []
+        #for key in dict
+        for department in departmentDict:
+            for course in departmentDict[department]:
+                if (department, course) not in requiredKeys:
+                    for x in departmentDict[department][course]:
+                        otherCourses.append(x)
+        
+        return otherCourses
+ 
+class courseList(object):
+    def __init__(self) -> None:
+        pass
 #create a list where each entry is a list of possible courses
 #the first entires will be lists of sections of required courses
 #I.e., first list would be all sections of Robotics I
 #the remaining lists will be duplicate lists of all other courses
 #these will be modified and sorted later based on user input
-def listCopies(requiredKeys, departmentDict, courseList): 
+    def listCopies(requiredKeys, departmentDict, courseList): 
     
-    courses = []
-    
-    print("Your required courses are:")
-    for key in requiredKeys:
-        print(key[1])
-        courses.append(departmentDict[key[0]][key[1]])
+        courses = []
         
+        print("Your required courses are:")
+        for key in requiredKeys:
+            print(key[1])
+            courses.append(departmentDict[key[0]][key[1]])
+            
+            
+        #note: this will break with bad user input
+        num = int(input("How many courses would you like to take? "))
+        for x in range(num):
+            courses.append(courseList.copy())
         
-    #note: this will break with bad user input
-    num = int(input("How many courses would you like to take? "))
-    for x in range(num):
-        courses.append(courseList.copy())
-    
-    return courses
+        return courses
     
 #evaluates courses based on user prefrences
 #this may leave required coursed rated very lowly
