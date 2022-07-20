@@ -4,6 +4,7 @@ from tkinter import ttk
 from homeview import homeview
 from betterqController import betterqController
 from courseSelectionview import courseSelectionview
+from ApiDatamodel import parseSemesterCourses
 import betterq
 
 class courseSelectionController(betterqController):
