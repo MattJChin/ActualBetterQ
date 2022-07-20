@@ -46,7 +46,7 @@ def selectReqs(departmentDict):
     
 #reorganize course data into a list for prefrence & calander management
 #list will ommit required courses
-def listify(departmentDict, requiredKeys):
+def listify(departmentDict, requiredKeys):#should go into coursemodel class
     
     otherCourses = []
     #for key in dict
@@ -63,7 +63,7 @@ def listify(departmentDict, requiredKeys):
 #I.e., first list would be all sections of Robotics I
 #the remaining lists will be duplicate lists of all other courses
 #these will be modified and sorted later based on user input
-def listCopies(requiredKeys, departmentDict, courseList): 
+def listCopies(requiredKeys, departmentDict, courseList): #should go into course model class
     
     courses = []
     
@@ -85,7 +85,7 @@ def listCopies(requiredKeys, departmentDict, courseList):
 #I don't care though since their in their own list theyre required
 #If I change the alogrithm that may have to change tho
 #note: this currently assumes user inputs perfectly
-def evaluate(courseList):
+def evaluate(courseList):   #this should be split between preferenceselection view and prefrence selection controller
     
     user = input("Do you need a communication intensive course? Y/N: ")
     if user == "Y":
@@ -148,7 +148,7 @@ def evaluate(courseList):
     return
 
 if __name__ == '__main__':
-    
+    #create buttons in view classes linking to these functions within the controllers
     departmentDict = parseSemesterCourses()
     requiredKeys = selectReqs(departmentDict)
     courseList = listify(departmentDict, requiredKeys)

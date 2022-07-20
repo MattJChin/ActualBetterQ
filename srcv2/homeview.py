@@ -40,7 +40,7 @@ class homeview(tk.Tk, view):
         Sets view's title.
     """
     def _make_title(self):
-        title = ttk.Label(self.mainFrame, text="Customers Manager", font=("Helvetica", 20))
+        title = ttk.Label(self.mainFrame, text="BetterQ home page", font=("Helvetica", 20))
         title.pack(padx=self.PAD, pady=self.PAD)
         
     """
