@@ -16,6 +16,7 @@ class preferenceSelectionview(tk.Tk, view):
         
         self._make_mainFrame()
         self._make_title()
+      
         
         
     def _make_mainFrame(self):
@@ -29,6 +30,7 @@ class preferenceSelectionview(tk.Tk, view):
         title = ttk.Label(self.mainFrame, text="preference Selection", font=("Helvetica", 20))
         title.pack(padx=self.PAD, pady=self.PAD)
     def display(self):
+        self.controller.updateUserCourses()
         self.mainloop()
         # set the controller to view
         # set the controller to view

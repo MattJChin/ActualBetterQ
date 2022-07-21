@@ -7,12 +7,13 @@ import courseSelectionController
 import preferenceSelectionController
 import ScheduleController
 
+import userDatamodel
 import betterq
 
 class homeController(betterqController):
     def __init__(self):
         self.currview = homeview(self)
-        
+        self.userData = userDatamodel.userData()
     #self.title('Tkinter MVC Demo')
     
         # create a model
@@ -21,7 +22,7 @@ class homeController(betterqController):
         self.currview.destroy()
         if caption == "Course Selection view":
             print("test2")
-            betterq.betterq.switchdisplay(self, courseSelectionController.courseSelectionController())
+            betterq.betterq.switchdisplay(self, courseSelectionController.courseSelectionController(self.userData))
             
         elif caption == "Preference Selection view":
             print("test1")

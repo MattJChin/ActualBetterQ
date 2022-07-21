@@ -5,13 +5,13 @@ from homeview import homeview
 from betterqController import betterqController
 from courseSelectionview import courseSelectionview
 from ApiDatamodel import parseSemesterCourses
-from userDatamodel import userData
+import preferenceSelectionController
 import betterq
 
 class courseSelectionController(betterqController):
-    def __init__(self):
+    def __init__(self, usermodel):
         self.currview = courseSelectionview(self)
-        self.userData = userData()
+        self.userData = usermodel
     
     
     #add functions from mainv1(ex. selectReqs(), )
@@ -47,8 +47,12 @@ class courseSelectionController(betterqController):
     def updateUserCourses(self):
         for course in self.coursesChecked:
             print(course)
-            self.userData.updateuserCourseSelection(course)
+        self.userData.updateuserCourseSelection(self.coursesChecked)
         print(self.userData.getCourseSelection())
+        self.switchdisplay()
+    def switchdisplay(self):
+        self.currview.destroy()
+        betterq.betterq.switchdisplay(self, preferenceSelectionController.preferenceSelectionController(self.userData))
     def display(self):
         self.currview.display()
    
