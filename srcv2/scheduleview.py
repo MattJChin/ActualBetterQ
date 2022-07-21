@@ -15,6 +15,7 @@ class scheduleview(tk.Tk, view):
         self.controller = controller
         self._make_mainFrame()
         self._make_title()
+       
         
         
     def _make_mainFrame(self):
@@ -27,8 +28,11 @@ class scheduleview(tk.Tk, view):
     def _make_title(self):
         title = ttk.Label(self.mainFrame, text="Schedule", font=("Helvetica", 20))
         title.pack(padx=self.PAD, pady=self.PAD)
+        btn = ttk.Button(self.mainFrame, text="generate", command=lambda: self.controller.generateSchedule())
+        btn.pack()
     def display(self):
         self.mainloop()
         # set the controller to view
         # set the controller to view
     
+ 

@@ -65,7 +65,7 @@ class courseSelectionview(tk.Tk, view):
         for index, course in enumerate(courses):
             intvar = 0
             varlist.append(tk.StringVar())
-            checkbtn = ttk.Checkbutton(frame_checkbtn, text=course, variable= varlist[index], onvalue = 1, offvalue =0, command =lambda state=index, txt=course:self.controller.courseChecked(txt, varlist[state].get()))
+            checkbtn = ttk.Checkbutton(frame_checkbtn, text=course, variable= varlist[index], onvalue = 1, offvalue =0, command =lambda state=index, txt=course:self.controller.courseChecked(txt, varlist[state].get(), dept))
             checkbtn.pack()
         
         btn = ttk.Button(frame_checkbtn, text="submit", command =lambda: self.controller.updateUserCourses())
@@ -73,7 +73,8 @@ class courseSelectionview(tk.Tk, view):
        
         # Show header
     
-        
+    
+    
     def display(self):
         self.mainloop()
         # set the controller to view

@@ -6,6 +6,7 @@ from betterqController import betterqController
 from courseSelectionview import courseSelectionview
 from ApiDatamodel import parseSemesterCourses
 import preferenceSelectionController
+import ScheduleController
 import betterq
 
 class courseSelectionController(betterqController):
@@ -32,27 +33,49 @@ class courseSelectionController(betterqController):
             x.append(key)
         return x
     
-    def courseChecked(self, course, state):
+    def getOtherCoursesCC(self, department):
+        x = []
+        for key in self.courseDict[department]:
+                for y in self.courseDict[department][key]:
+                    print(y.data["attribute"])
+                    if y.data["attribute"] == "Communitcation Intensive":
+                        x.append(y)
+        return x
+    
+    def courseChecked(self, course, state, dept):
         print(course)
         print(state)
+        print(dept)
         if(int(state) == 1):
-            self.coursesChecked.append(course)
+            if course in self.courseDict[dept]:
+                self.coursesChecked.append((dept, course))
         elif(int(state) <1):
-            self.coursesChecked.remove(course)
+            self.coursesChecked.remove((dept, course))
         print(self.coursesChecked)
-    def getCheckedCourses(self):
-    
-        return self.coursesChecked
+        
+    def storeOthercourses(self):
+        others = []
+        for department in self.courseDict:
+            for course in self.courseDict[department]:
+                if (department, course) not in self.coursesChecked:
+                    for x in self.courseDict[department][course]:
+                        others.append(x)
+        self.userData.updateOtherCourses(others)
+        self.userData.listCopies(self.coursesChecked, self.courseDict, others)
+        return others
     
     def updateUserCourses(self):
         for course in self.coursesChecked:
             print(course)
         self.userData.updateuserCourseSelection(self.coursesChecked)
         print(self.userData.getCourseSelection())
+        self.storeOthercourses()
+
         self.switchdisplay()
+        
     def switchdisplay(self):
         self.currview.destroy()
-        betterq.betterq.switchdisplay(self, preferenceSelectionController.preferenceSelectionController(self.userData))
+        betterq.betterq.switchdisplay(self, ScheduleController.ScheduleController(self.userData))
     def display(self):
         self.currview.display()
    
