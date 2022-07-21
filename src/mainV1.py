@@ -14,8 +14,9 @@ def selectReqs(departmentDict):
     print("Please select required courses")
     print("Input 4 character code for department (case sensitive)")
     
-    for key, value in departmentDict.items() :
+    for key, key in departmentDict.items() :
         print(key)
+      
     
     dept = input("Input subject code or type NEXT to continue: ")
     

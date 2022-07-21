@@ -7,7 +7,5 @@ class betterqController(metaclass=abc.ABCMeta):
     def display(self):
        return
    
-    def switchdisplay(self, newDisplay):
-        self.currview= newDisplay
-        self.currview.display()
+   
     
