@@ -1,0 +1,78 @@
+body {
+  font-family: 'Georgia', cursive;
+  background-color: #202225;
+}
+
+h1 {
+  color: yellow;
+}
+
+h2 {
+  color: yellow;
+}
+
+label {
+  color: white;
+}
+
+a {
+  font-size: 2.0rem;
+  color: yellow;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+}
+
+li {
+  list-style-type: none;
+}
+
+.dropdown {
+  display: inline;
+}
+
+.this {
+  color: white;
+  font-size: 3 rem;
+}
+
+.dropdown-item {
+  color: yellow;
+}
+
+.preferences {
+  margin-left: 6 rem;
+}
+
+.card {
+  width: 20rem;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin-left: 0.5rem;
+  border-top-color: yellow;
+}
+
+.header {
+  color: yellow;
+  font-size: 2rem;
+}
+
+
+.department-link {
+  color: white;
+}
+
+.card::hover {
+  border:
+}
+
+a:hover {
+  color: yellow;
+  border-color: red;
+}
+
+.header::onClick {
+  padding-left: 10rem;
+}
