@@ -15,14 +15,38 @@ from urllib.request import urlopen
 import json
 import courseClass
 
-#NEEDS IMPLEMENTATION
-#currently just hard coded a recent version of the data
-#Finds the newest version of the course database from QuACS github
-def findUrl():
-    #https://github.com/quacs/quacs-data/tree/master/semester_data /newest /courses.json
-    url = 'https://raw.githubusercontent.com/quacs/quacs-data/master/semester_data/202209/courses.json'
-    return url
+import requests
+from bs4 import BeautifulSoup
 
+#Finds the newest version of the course database from QuACS github
+#This was we don't have to download the whole repository
+def findUrl():
+
+    url = 'https://github.com/quacs/quacs-data/tree/master/semester_data' 
+    reqs = requests.get(url)
+    soup = BeautifulSoup(reqs.text, 'html.parser')
+    
+    first = ''
+    second = ''
+    #goes through every link on the page to find newest data
+    for link in soup.find_all('a'):
+        second = first
+        first = link.get('href')
+        
+        #when first is https://github.com, that means the previous link was the last file link
+        #i.e., the newest data
+        if(first == 'https://github.com'):
+            start = 'https://raw.githubusercontent.com/quacs/quacs-data/master/semester_data/'
+            end = '/courses.json'
+            return(start + second[44::] + end)
+            
+    raise Exception("URL not found.")
+
+
+#builds a dictionary of dictionaries fo lists
+#the first keys are 4 letter course codes
+#the inner keys are the names of the course
+#and the inner values are lists of courseClass instances
 def parseSemesterCourses():
     
     #find the url
@@ -44,7 +68,6 @@ def parseSemesterCourses():
     for departments in data:
         for course in departments["courses"]:
             for section in course["sections"]:
-                #courseList.append(courseClass.Course(section))
                                 
                 #create department key (eg "BIOL") if needed
                 if departmentDict.get(section["subj"]) is None:
@@ -71,5 +94,31 @@ def parseSemesterCourses():
 
 
 if __name__ == '__main__': #personal testing code
-    parseSemesterCourses()   
+    
+    departmentDict = parseSemesterCourses()
+    
+    #testing time conflict code with some random course
+    compareTo = departmentDict["CSCI"]["Robotics I"][0]
+    
+    for department in departmentDict:
+        for course in departmentDict[department]:
+    
+            compareTo.checkConflict(departmentDict[department][course][0])
+
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
     

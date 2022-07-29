@@ -199,11 +199,12 @@ if __name__ == '__main__':
     
     
     #note: Program needs time conflict avoidance implementation
+    #note: I coded it! now I just have to use it
     
     #note: Program rates things very basically, so if you say you need
     #a 4000 level art course, it increases the raiting of all 4000 level
     #arts courses, leading your schedule to likely contain two of them.
-    #This is another conflict that needs to be handled.
+    #This is another conflict that needs to be handled. (see CalandarClass)
     #It may be a good idea to redesign algorithm from the ground up.
     #The box slots method is a good start, I just think filling in
     #the free courses with every possible course may not be the best
