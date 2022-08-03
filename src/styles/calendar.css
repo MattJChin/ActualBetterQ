@@ -67,6 +67,15 @@ li {
   font-size: 2rem;
 }
 
+.calendar {
+  height: 700px;
+}
+
+.hours {
+  color: white;
+  height: 6.25%;
+}
+
 
 .department-link {
   color: white;
