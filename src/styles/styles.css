@@ -4,11 +4,11 @@ body {
 }
 
 h1 {
-  color: yellow;
+  color: #ffd45c;
 }
 
 h2 {
-  color: yellow;
+  color: #ffd45c;
 }
 
 label {
@@ -17,11 +17,12 @@ label {
 
 a {
   font-size: 2.0rem;
-  color: yellow;
+  color: #ffd45c;
 }
 
 .navbar-brand {
   font-size: 2.5rem;
+  margin: auto 0;
 }
 
 li {
@@ -38,7 +39,7 @@ li {
 }
 
 .dropdown-item {
-  color: yellow;
+  color: #ffd45c;
 }
 
 .preferences {
@@ -51,33 +52,52 @@ li {
   vertical-align: top;
   text-align: center;
   margin-left: 0.5rem;
-  border-top-color: yellow;
+  border-top-color: #ffd45c;
+}
+
+.smallest {
+  width: 10rem;
 }
 
 .smaller {
-  width: 14rem;
+  width: 13rem;
 }
 
 .medium {
-  width: 18rem;
+  width: 17rem;
 }
 
 .header {
-  color: yellow;
-  font-size: 2rem;
+  color: #ffd45c;
+  font-size: 1.8rem;
 }
 
+img {
+  width: 70px;
+  height: 70px;
+  display: inline-flex;
+}
+
+.calendar {
+  border-color: #ffd45c;
+}
+
+.hours {
+  padding: 100px;
+  border-color: #ffd45c;
+}
 
 .department-link {
   color: white;
+  font-size: 1.6rem;
 }
 
 .card::hover {
-  border:
+  
 }
 
 a:hover {
-  color: yellow;
+  color: #ffd45c;
   border-color: red;
 }
 

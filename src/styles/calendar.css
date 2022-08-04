@@ -4,11 +4,11 @@ body {
 }
 
 h1 {
-  color: yellow;
+  color: #ffd45c;
 }
 
 h2 {
-  color: yellow;
+  color: #ffd45c;
 }
 
 label {
@@ -17,7 +17,13 @@ label {
 
 a {
   font-size: 2.0rem;
-  color: yellow;
+  color: #ffd45c;
+}
+
+img {
+  width: 70px;
+  height: 70px;
+  display: inline-flex;
 }
 
 .navbar-brand {
@@ -38,7 +44,7 @@ li {
 }
 
 .dropdown-item {
-  color: yellow;
+  color: #ffd45c;
 }
 
 .preferences {
@@ -51,7 +57,7 @@ li {
   vertical-align: top;
   text-align: center;
   margin-left: 0.5rem;
-  border-top-color: yellow;
+  border-top-color: #ffd45c;
 }
 
 .smaller {
@@ -63,7 +69,7 @@ li {
 }
 
 .header {
-  color: yellow;
+  color: #ffd45c;
   font-size: 2rem;
 }
 
@@ -72,8 +78,15 @@ li {
 }
 
 .hours {
-  color: white;
-  height: 6.25%;
+  color: #ffd45c;
+  border: 1px solid;
+  border-color: rgb(169, 146, 146);
+}
+
+.time {
+  color: #ffd45c;
+  border: 1px solid;
+  border-color: rgb(169, 146, 146);
 }
 
 
@@ -86,7 +99,7 @@ li {
 }
 
 a:hover {
-  color: yellow;
+  color: #ffd45c;
   border-color: red;
 }
 
