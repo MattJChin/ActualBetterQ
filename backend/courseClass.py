@@ -90,6 +90,7 @@ class Course(object):
         #the start and end times of each time block
         #since comparisons will likely have to be made again later
         #this info is saved for reuse.
+        #TODO: This would be more runtime and data efficient as a hex function
         if not bool(self.timeBlock):
             for time in self.data["timeslots"]:
                 timeStart = time["timeStart"]
@@ -126,20 +127,8 @@ class Course(object):
         for x in self.timeBlock:
             for y in course2.timeBlock:
                 if(y[0] <= x[0] and y[1] >= x[0]):
-                    print("----------------COURSE 1----------------")
-                    print(self.data["title"])
-                    print(self.data["timeslots"])
-                    print("----------------COURSE 2----------------")
-                    print(course2.data["title"])
-                    print(course2.data["timeslots"])
                     return True
                 if(y[0] <= x[1] and y[1] >= x[1]):
-                    print("----------------COURSE 1----------------")
-                    print(self.data["title"])
-                    print(self.data["timeslots"])
-                    print("----------------COURSE 2----------------")
-                    print(course2.data["title"])
-                    print(course2.data["timeslots"])
                     return True
             
         return False
